@@ -16,6 +16,7 @@ MAX_LEN = 10
 NUM_CLASSES = 255
 
 LAYERS = 8
+FF_DIM = 32
 NUM_HEADS = 4
 EMBED_DIM = NUM_HEADS * 16
 
@@ -89,7 +90,7 @@ def make_translation_dataset():
 
 
 if __name__ == "__main__":
-    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, EMBED_DIM, NUM_HEADS, 32)
+    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, EMBED_DIM, NUM_HEADS, FF_DIM)
 
     # X_train, Y_train, X_test, Y_test = make_dataset()
     X_train, Y_train, X_test, Y_test = make_translation_dataset()
