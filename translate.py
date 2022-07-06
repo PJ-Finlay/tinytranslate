@@ -33,10 +33,17 @@ def make_dataset():
 MAX_LEN = 6
 NUM_CLASSES = 255
 
+def int_of_char(c):
+    i = ord(c)
+    if i >= NUM_CLASSES:
+        i = 88 # "X" character
+    return i
+
 def ints_of_str(s):
-    return [ord(c) for c in s]
+    return [int_of_char(c) for c in s]
 
 def make_translation_dataset():
+    """
     x = list()
     for i in range(10000):
         x.append("HelloX")
@@ -46,6 +53,19 @@ def make_translation_dataset():
     for i in range(10000):
         y.append("HolaXX")
         y.append("PerroX")
+    """
+    x = list()
+    with open("data/source") as source_file:
+        for line in source_file:
+            while len(line) < MAX_LEN:
+                line += " "
+            x.append(line)
+    y = list()
+    with open("data/target") as target_file:
+        for line in target_file:
+            while len(line) < MAX_LEN:
+                line += " "
+            y.append(line)
 
     for i in range(len(x)):
         x[i] = x[i][:MAX_LEN]
