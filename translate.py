@@ -15,8 +15,8 @@ from tinygrad.optim import Adam
 MAX_LEN = 10
 NUM_CLASSES = 255
 
-LAYERS = 8
-FF_DIM = 32
+LAYERS = 16
+FF_DIM = 64
 NUM_HEADS = 4
 EMBED_DIM = NUM_HEADS * 16
 
