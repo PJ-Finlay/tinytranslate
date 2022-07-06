@@ -11,10 +11,12 @@ from extra.training import train, evaluate
 from models.transformer import Transformer
 from tinygrad.optim import Adam
 
-MAX_LEN = 8
+MAX_LEN = 10
 NUM_CLASSES = 255
-LAYERS = 2
+
+LAYERS = 8
 NUM_HEADS = 4
+EMBED_DIM = NUM_HEADS * 16
 
 TRAIN_STEPS = 100
 TRAIN_LOOPS = 100
@@ -88,7 +90,7 @@ def make_translation_dataset():
 from tinygrad.optim import Adam
 
 if __name__ == "__main__":
-    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, NUM_HEADS * 32, NUM_HEADS, 32)
+    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, EMBED_DIM, NUM_HEADS, 32)
 
     # X_train, Y_train, X_test, Y_test = make_dataset()
     X_train, Y_train, X_test, Y_test = make_translation_dataset()
