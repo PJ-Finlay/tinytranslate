@@ -88,7 +88,7 @@ def make_translation_dataset():
 from tinygrad.optim import Adam
 
 if __name__ == "__main__":
-    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, 128, NUM_HEADS, 32)
+    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, NUM_HEADS * 16, NUM_HEADS, 32)
 
     # X_train, Y_train, X_test, Y_test = make_dataset()
     X_train, Y_train, X_test, Y_test = make_translation_dataset()
