@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-# Based on https://github.com/geohot/tinygrad/blob/master/examples/transformer.py
 import os
 import numpy as np
 import random
@@ -10,6 +9,8 @@ from extra.utils import get_parameters
 from extra.training import train, evaluate
 from models.transformer import Transformer
 from tinygrad.optim import Adam
+
+# Based on https://github.com/geohot/tinygrad/blob/master/examples/transformer.py
 
 MAX_LEN = 10
 NUM_CLASSES = 255
@@ -86,8 +87,6 @@ def make_translation_dataset():
 
     return ds_X_train, ds_Y_train, ds_X_test, ds_Y_test
 
-
-from tinygrad.optim import Adam
 
 if __name__ == "__main__":
     model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, EMBED_DIM, NUM_HEADS, 32)
