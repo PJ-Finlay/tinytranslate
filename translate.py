@@ -30,40 +30,58 @@ def make_dataset():
     return ds_X_train, ds_Y_train, ds_X_test, ds_Y_test
 
 
-MAX_LEN = 3
+MAX_LEN = 6
+NUM_CLASSES = 255
 
+def ints_of_str(s):
+    return [ord(c) for c in s]
 
 def make_translation_dataset():
     x = list()
-    x.append("Hello")
-    x.append("Dog")
+    for i in range(10000):
+        x.append("HelloX")
+        x.append("DogXXX")
 
     y = list()
-    y.append("Hola")
-    y.append("Perro")
+    for i in range(10000):
+        y.append("HolaXX")
+        y.append("PerroX")
 
-    x = x[:, 0:MAX_LEN]
-    y = y[:, 0:MAX_LEN]
+    for i in range(len(x)):
+        x[i] = x[i][:MAX_LEN]
+        y[i] = y[i][:MAX_LEN]
 
-    ds_X_train = x[0]
-    ds_Y_train = y[0]
-    ds_X_test = x[1]
-    ds_Y_test = y[1]
+    x = list(map(ints_of_str, x))
+    y = list(map(ints_of_str, y))
+
+    test_size = 2000
+
+    ds_X_train = x[test_size:]
+    ds_Y_train = y[test_size:]
+    ds_X_test = x[:test_size]
+    ds_Y_test = y[:test_size]
+
+    ds_X_train = np.array(ds_X_train)
+    ds_Y_train = np.array(ds_Y_train)
+    ds_X_test = np.array(ds_X_test)
+    ds_Y_test = np.array(ds_Y_test)
+
     return ds_X_train, ds_Y_train, ds_X_test, ds_Y_test
 
 
 from tinygrad.optim import Adam
 
 if __name__ == "__main__":
-    model = Transformer(10, 6, 2, 128, 4, 32)
+    model = Transformer(NUM_CLASSES, MAX_LEN, 2, 128, 4, 32)
 
-    X_train, Y_train, X_test, Y_test = make_dataset()
+    #X_train, Y_train, X_test, Y_test = make_dataset()
+    X_train, Y_train, X_test, Y_test = make_translation_dataset()
     lr = 0.003
     for i in range(10):
         optim = Adam(get_parameters(model), lr=lr)
         train(model, X_train, Y_train, optim, 50, BS=64)
         acc, Y_test_preds = evaluate(
-            model, X_test, Y_test, num_classes=10, return_predict=True
+            model, X_test, Y_test, num_classes=NUM_CLASSES, return_predict=True
         )
         lr /= 1.2
         print(f"reducing lr to {lr:.4f}")
