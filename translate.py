@@ -14,6 +14,7 @@ from tinygrad.optim import Adam
 MAX_LEN = 20
 NUM_CLASSES = 255
 LAYERS = 10
+NUM_HEADS = 20
 
 TRAIN_STEPS = 100
 TRAIN_LOOPS = 100
@@ -87,7 +88,7 @@ def make_translation_dataset():
 from tinygrad.optim import Adam
 
 if __name__ == "__main__":
-    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, 128, 4, 32)
+    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, 128, NUM_HEADS, 32)
 
     # X_train, Y_train, X_test, Y_test = make_dataset()
     X_train, Y_train, X_test, Y_test = make_translation_dataset()
