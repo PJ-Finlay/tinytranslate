@@ -18,20 +18,24 @@ LAYERS = 10
 TRAIN_STEPS = 100
 TRAIN_LOOPS = 100
 
+
 def int_of_char(c):
     i = ord(c)
     if i >= NUM_CLASSES:
-        i = 88 # "X" character
+        i = 88  # "X" character
     return i
+
 
 def ints_of_str(s):
     return [int_of_char(c) for c in s]
 
+
 def str_of_ints(ints):
-    to_return = ''
+    to_return = ""
     for i in ints:
         to_return += chr(i)
     return to_return
+
 
 def make_translation_dataset():
     """
@@ -85,7 +89,7 @@ from tinygrad.optim import Adam
 if __name__ == "__main__":
     model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, 128, 4, 32)
 
-    #X_train, Y_train, X_test, Y_test = make_dataset()
+    # X_train, Y_train, X_test, Y_test = make_dataset()
     X_train, Y_train, X_test, Y_test = make_translation_dataset()
     lr = 0.003
     for i in range(TRAIN_LOOPS):
