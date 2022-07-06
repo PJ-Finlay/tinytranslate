@@ -13,6 +13,10 @@ from tinygrad.optim import Adam
 
 MAX_LEN = 20
 NUM_CLASSES = 255
+LAYERS = 10
+
+TRAIN_STEPS = 100
+TRAIN_LOOPS = 100
 
 def int_of_char(c):
     i = ord(c)
@@ -79,14 +83,14 @@ def make_translation_dataset():
 from tinygrad.optim import Adam
 
 if __name__ == "__main__":
-    model = Transformer(NUM_CLASSES, MAX_LEN, 2, 128, 4, 32)
+    model = Transformer(NUM_CLASSES, MAX_LEN, LAYERS, 128, 4, 32)
 
     #X_train, Y_train, X_test, Y_test = make_dataset()
     X_train, Y_train, X_test, Y_test = make_translation_dataset()
     lr = 0.003
-    for i in range(10):
+    for i in range(TRAIN_LOOPS):
         optim = Adam(get_parameters(model), lr=lr)
-        train(model, X_train, Y_train, optim, 50, BS=64)
+        train(model, X_train, Y_train, optim, TRAIN_STEPS, BS=64)
         acc, Y_test_preds = evaluate(
             model, X_test, Y_test, num_classes=NUM_CLASSES, return_predict=True
         )
