@@ -5,10 +5,10 @@ import numpy as np
 import random
 
 from tinygrad.tensor import Device
-from extra.utils import get_parameters
+from tinygrad.nn.state import get_parameters
 from extra.training import train, evaluate
-from models.transformer import Transformer
-from tinygrad.optim import Adam
+from extra.models.transformer import Transformer
+from tinygrad.nn.optim import Adam
 
 # Based on https://github.com/geohot/tinygrad/blob/master/examples/transformer.py
 
@@ -61,7 +61,7 @@ def make_translation_dataset():
                 line += " "
             x.append(line)
     y = list()
-    with open("script/target") as target_file:
+    with open("run/target") as target_file:
         for line in target_file:
             while len(line) < MAX_LEN:
                 line += " "

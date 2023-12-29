@@ -1,5 +1,5 @@
 # tinytranslate custom
-data/
+run/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
