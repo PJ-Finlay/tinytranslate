@@ -55,7 +55,7 @@ def make_translation_dataset():
         y.append("PerroX")
     """
     x = list()
-    with open("script/source") as source_file:
+    with open("run/source") as source_file:
         for line in source_file:
             while len(line) < MAX_LEN:
                 line += " "
