@@ -1,5 +1,5 @@
 # tinytranslate
-Machine translation demo built on [tinygrad](https://github.com/geohot/tinygrad)
+Machine translation demo built on [tinygrad](https://github.com/tinygrad/tinygrad)
 
 Tinytranslate is a demo of using Transformer neural networks for machine translation. Tinytranslate is very lightweight and can train from scratch on a laptop CPU in a few seconds allowing for fast iteration and experimentation.
 
