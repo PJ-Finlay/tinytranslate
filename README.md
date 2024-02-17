@@ -7,6 +7,20 @@ Tinytranslate is a lightweight tech demo and is not suitable for real world tran
 
 #### Quickstart
 ```
+# Create Virtual Environment (optional)
+virtualenv env
+source env/bin/activate
+
+# Install tinygrad
+git clone https://github.com/tinygrad/tinygrad.git
+cd tinygrad
+pip install -e .
+cd ..
+
+# Download TinyTranslate source code
+git clone https://github.com/PJ-Finlay/tinytranslate
+cd tinytranslate
+
 # Download training data
 ./scripts/download_data.sh
 
